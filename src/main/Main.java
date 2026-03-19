@@ -17,5 +17,7 @@ public class Main {
 
         window.setLocationRelativeTo(null); // căn giữa màn hình
         window.setVisible(true); // mặc định ẩn
+
+        gamePanel.startGameThread();
     }
 }
