@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     Sound music = new Sound();
     Sound se = new Sound();
+    public UI ui = new UI(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Thread gameThread;
@@ -138,6 +139,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         // PLAYER
         player.draw(g2);
+
+        // UI
+        ui.draw(g2);
 
         g2.dispose(); // Giải phóng bộ nhớ của bút vẽ (tiết kiệm tài nguyên hệ thống)
     }
