@@ -1,5 +1,6 @@
 package main;
 
+import object.ObjectBoots;
 import object.ObjectChest;
 import object.ObjectDoor;
 import object.ObjectKey;
@@ -20,6 +21,10 @@ public class AssetSetter {
         gp.obj[1].worldX = 23 * gp.tileSize;
         gp.obj[1].worldY = 40 * gp.tileSize;
 
+        gp.obj[2] = new ObjectKey();
+        gp.obj[2].worldX = 23 * gp.tileSize;
+        gp.obj[2].worldY = 38 * gp.tileSize;
+
         gp.obj[3] = new ObjectDoor();
         gp.obj[3].worldX = 10 * gp.tileSize;
         gp.obj[3].worldY = 11 * gp.tileSize;
@@ -32,9 +37,12 @@ public class AssetSetter {
         gp.obj[5].worldX = 12 * gp.tileSize;
         gp.obj[5].worldY = 22 * gp.tileSize;
 
-        // ĐẶT RƯƠNG BÁU (Chest)
         gp.obj[6] = new ObjectChest();
         gp.obj[6].worldX = 10 * gp.tileSize;
         gp.obj[6].worldY = 7 * gp.tileSize;
+
+        gp.obj[7] = new ObjectBoots();
+        gp.obj[7].worldX = 37 * gp.tileSize;
+        gp.obj[7].worldY = 42 * gp.tileSize;
     }
 }
