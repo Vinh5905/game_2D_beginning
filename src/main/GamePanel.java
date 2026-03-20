@@ -7,13 +7,15 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable {
     
     // SCREEN SETTINGS
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3; // vì 16x16 nhỏ nên phải scale lên
 
-    final int tileSize = originalTileSize * scale; // 48x48 tile
+    public final int tileSize = originalTileSize * scale; // 48x48 tile
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol; // 768px
@@ -24,11 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-
-    // set player's default position
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
+    Player player = new Player(this, keyH);
     
     public GamePanel() {
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight)); // lập kích thước màn hình
@@ -97,27 +95,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (keyH.upPressed == true) {
-            playerY -= playerSpeed;
-        }
-        else if (keyH.downPressed == true) {
-            playerY += playerSpeed;
-        }
-        else if (keyH.leftPressed == true) {
-            playerX -= playerSpeed;
-        }
-        else if (keyH.rightPressed == true) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics g) { // built-in func in java // tự động gọi khi call repaint()
         super.paintComponent(g); // Xóa màn hình cũ trước khi vẽ màn hình mới
 
-        Graphics g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
 
-        g2.setColor(Color.WHITE);
-        g2.fillRect(playerX, playerY, tileSize, tileSize);
+        player.draw(g2);
+
         g2.dispose(); // Giải phóng bộ nhớ của bút vẽ (tiết kiệm tài nguyên hệ thống)
     }
 }
