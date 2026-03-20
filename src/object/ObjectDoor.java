@@ -6,11 +6,12 @@ import javax.imageio.ImageIO;
 
 public class ObjectDoor extends SuperObject {
     public ObjectDoor() {
-        name = "Key";
+        name = "Door";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/res/objects/door.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        collision = true;
     }
 }
