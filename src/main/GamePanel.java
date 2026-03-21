@@ -126,6 +126,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
+        // DEBUG
+        long drawStart = 0;
+        if (keyH.checkDrawTime == true) {
+            drawStart = System.nanoTime();
+        }
+
         // mấy drawImage của Graphics2D đều tính theo tọa độ screen panel
         // TILE
         tileM.draw(g2);
@@ -142,6 +148,14 @@ public class GamePanel extends JPanel implements Runnable {
 
         // UI
         ui.draw(g2);
+
+        // DEBUG
+        if (keyH.checkDrawTime == true) {
+            long drawEnd = System.nanoTime();
+            long timePassed = drawEnd - drawStart;
+            g2.drawString("Time: " + timePassed, 10, 400);
+            System.out.println("Draw time: " + timePassed);
+        }
 
         g2.dispose(); // Giải phóng bộ nhớ của bút vẽ (tiết kiệm tài nguyên hệ thống)
     }

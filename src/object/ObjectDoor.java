@@ -4,11 +4,20 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import main.GamePanel;
+import main.UtilityTool;
+
 public class ObjectDoor extends SuperObject {
-    public ObjectDoor() {
+
+    GamePanel gp;
+
+    public ObjectDoor(GamePanel gp) {
+        this.gp = gp;
+        
         name = "Door";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/res/objects/door.png"));
+            image = UtilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
