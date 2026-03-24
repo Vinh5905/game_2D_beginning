@@ -20,7 +20,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 
-    public int hasKey = 0;
+    // public int hasKey = 0;
     public int standCounter = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -51,6 +51,14 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
+        // up1 = setup("up");
+        // up2 = setup("up");
+        // down1 = setup("down");
+        // down2 = setup("down");
+        // left1 = setup("left");
+        // left2 = setup("left");
+        // right1 = setup("right");
+        // right2 = setup("right");
         up1 = setup("boy_up_1");
         up2 = setup("boy_up_2");
         down1 = setup("boy_down_1");
@@ -138,41 +146,7 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
-            String objectName = gp.obj[i].name;
-            switch (objectName) {
-                case "Key":
-                    gp.playSE(1);
-                    hasKey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got a key!");
-                    System.out.println("Key: " + hasKey);
-                    break;
-                case "Door":
-                    if (hasKey > 0) {
-                        gp.playSE(3);
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You opened the door!");
-                    } else {
-                        gp.ui.showMessage("You need a key!");
-                    }
-                    System.out.println("Key: " + hasKey);
-                    break;
-                case "Boots":
-                    gp.playSE(2);
-                    gp.obj[i] = null;
-                    speed += 2;
-                    gp.ui.showMessage("Speed up!");
-                    break;
-                case "Chest":
-                    gp.stopMusic();
-                    gp.playSE(4);
-                    gp.ui.gameFinished = true;
-                    break;
-
-                default:
-                    break;
-            }
+            
         }
     }
 

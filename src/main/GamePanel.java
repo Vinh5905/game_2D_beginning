@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // SYSTEM
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public UI ui = new UI(this);
@@ -45,6 +45,11 @@ public class GamePanel extends JPanel implements Runnable {
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+
+    // GAME STATE (vd cùng 1 phím enter, lúc ở màn hình chơi khác với lúc ở màn hình đợi)
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
     
     public GamePanel() {
         this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight)); // lập kích thước màn hình
@@ -57,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setupObject();
         playMusic(0);
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -118,7 +124,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        player.update();
+        if (gameState == playState) {
+            player.update();
+        }
+
+        if (gameState == pauseState) {
+            // nothing
+        }
     }
 
     public void paintComponent(Graphics g) { // built-in func in java // tự động gọi khi call repaint()
